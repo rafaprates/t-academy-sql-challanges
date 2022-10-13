@@ -52,11 +52,13 @@ WHERE materias.nomeMateria = "história";
 
 
 # 8. Nome dos professores que leciona as matérias de português e inglês
-SELECT materias.nomeMateria, professores.nomeProfessor 
+SELECT professores.nomeProfessor
 FROM materias
 INNER JOIN professores ON materias.codigoProfessor = professores.codigoProfessor
-WHERE nomeMateria = "portugues" 
-OR nomeMateria = "ingles";
+WHERE nomeMateria = "portugues"
+OR nomeMateria = "ingles"
+GROUP BY professores.nomeProfessor
+HAVING COUNT(DISTINCT materias.nomeMateria) = 2;
 
 
 # 9. Quantidade de alunos por matéria
