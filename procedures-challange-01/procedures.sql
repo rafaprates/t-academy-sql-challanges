@@ -43,7 +43,6 @@ CALL inserirOuAtualizarItem(1, 100);
 
 CALL inserirItem(2, 400);
 
-
 SELECT produtos.nome, itens.quantidade FROM itens
 INNER JOIN produtos ON produtos.id = itens.fk_produto;
 
