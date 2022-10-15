@@ -1,15 +1,8 @@
 DROP PROCEDURE IF EXISTS cadastrar_cliente;
 TRUNCATE TABLE clientes;
 
-
-SELECT * FROM clientes;
-CALL cadastrar_cliente("rafael cardoso", "rafael.cardoso@t-systems.com");
-#CALL validar_nome_cliente("rafaelbrunopratesbarbosacardoso");
-#CALL validar_email_cliente("rafael@example.com");
-
-DROP PROCEDURE cadastrar_cliente;
 DELIMITER $$
-	CREATE PROCEDURE cadastrar_cliente(IN nome_cliente VARCHAR(30), IN email_cliente VARCHAR(50))
+	CREATE PROCEDURE cadastrar_cliente(IN nome_cliente VARCHAR(255), IN email_cliente VARCHAR(255))
     BEGIN
 		DECLARE cliente_id INT;
         DECLARE nome_cliente_eh_valido VARCHAR(255);
@@ -28,9 +21,7 @@ DELIMITER $$
 				INSERT INTO clientes (id, nome, email)
 				VALUES (cliente_id, nome_cliente, email_cliente);
 			END IF;
-            SELECT "Cliente cadastrado com sucesso";
+            SELECT concat("Cliente ", nome_cliente, ", ", email_cliente, " cadastrado com sucesso");
 		END IF;
     END $$
 DELIMITER ;
-
-SELECT * FROM clientes;
